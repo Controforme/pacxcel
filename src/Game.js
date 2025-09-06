@@ -6,11 +6,24 @@ const canvas = document.getElementById("gameCanvas"); //select the html canvas
 const ctx = canvas.getContext("2d"); //two dimensional rendering context
 const glInterval = 1000 / 75; //interval between consecutive gameLoop redraws
 
-const tileX = 48; //width of a single tile
-const tileY = 16; //height of a single tile
-const velocity = 1; //pacman velocity
+var tileX = 48; //width of a single tile
+var tileY = 16; //height of a single tile
+const columnsNumber = 13; //number of columns set in TileMap array
+var velocity = 2; //pacman velocity
 
-const tileMap = new TileMap(tileX, tileY); //build a tile map
+/*responsive resize*/
+var maxWidth = window.innerWidth - 100;
+var referenceCanvas = tileX * columnsNumber;
+/*resize and reduce velocity on small screens*/
+if (referenceCanvas > maxWidth) {
+  tileX = parseInt((tileX * maxWidth) / referenceCanvas);
+  tileY = parseInt((tileY * maxWidth) / referenceCanvas);
+  velocity = 1;
+}
+
+//create the tile map
+const tileMap = new TileMap(tileX, tileY);
+//create pacman
 const pacman = tileMap.getPacman(velocity);
 
 /*game loop - redraws the screen*/

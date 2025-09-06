@@ -1,5 +1,6 @@
 /*imports*/
 import Pacman from "./Pacman.js";
+import MovingDirection from "./MovingDirection.js";
 
 /*methods to build the tile map*/
 export default class TileMap {
@@ -22,7 +23,6 @@ export default class TileMap {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1],
     [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
@@ -32,7 +32,6 @@ export default class TileMap {
     [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
     [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
     [1, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1],
-    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
     [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -101,5 +100,47 @@ export default class TileMap {
   setCanvasSize(canvas) {
     canvas.width = this.map[0].length * this.tileX;
     canvas.height = this.map.length * this.tileY;
+  }
+
+  //check the next cell to see if there's a wall
+  didCollideWithEnvironment(x, y, direction) {
+    if (direction == null) {
+      return;
+    }
+
+    if (Number.isInteger(x / this.tileX) && Number.isInteger(y / this.tileY)) {
+      let column = 0;
+      let row = 0;
+      let nextColumn = 0;
+      let nextRow = 0;
+
+      switch (direction) {
+        case MovingDirection.right:
+          nextColumn = x + this.tileX;
+          column = nextColumn / this.tileX;
+          row = y / this.tileY;
+          break;
+        case MovingDirection.left:
+          nextColumn = x - this.tileX;
+          column = nextColumn / this.tileX;
+          row = y / this.tileY;
+          break;
+        case MovingDirection.up:
+          nextRow = y - this.tileY;
+          row = nextRow / this.tileY;
+          column = x / this.tileX;
+          break;
+        case MovingDirection.down:
+          nextRow = y + this.tileY;
+          row = nextRow / this.tileY;
+          column = x / this.tileX;
+          break;
+      }
+      const tile = this.map[row][column];
+      if (tile === 1) {
+        return true;
+      }
+      return false;
+    }
   }
 }
