@@ -1,3 +1,6 @@
+/*imports*/
+import Pacman from "./Pacman.js";
+
 /*methods to build the tile map*/
 export default class TileMap {
   constructor(tileX, tileY) {
@@ -12,15 +15,25 @@ export default class TileMap {
   }
 
   // array that represents the map
+  // 1 - wall
+  // 0 - emptyCell
+  // 4 - pacman/cursor
   map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1],
+    [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
+    [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+    [1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1],
+    [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+    [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
+    [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   ];
@@ -40,6 +53,18 @@ export default class TileMap {
     }
   }
 
+  //draw the empty cells
+  //methods that start with # are private, can't be called outside this file
+  #drawEmpty(ctx, column, row, sizeX, sizeY) {
+    ctx.drawImage(
+      this.emptyCell,
+      column * this.tileX,
+      row * this.tileY,
+      sizeX,
+      sizeY
+    );
+  }
+
   //draw the walls
   //methods that start with # are private, can't be called outside this file
   #drawWall(ctx, column, row, sizeX, sizeY) {
@@ -52,15 +77,24 @@ export default class TileMap {
     );
   }
 
-  //draw the empty cells
-  #drawEmpty(ctx, column, row, sizeX, sizeY) {
-    ctx.drawImage(
-      this.emptyCell,
-      column * this.tileX,
-      row * this.tileY,
-      sizeX,
-      sizeY
-    );
+  //pacman
+  getPacman(velocity) {
+    for (let row = 0; row < this.map.length; row++) {
+      for (let column = 0; column < this.map[row].length; column++) {
+        let tile = this.map[row][column];
+        if (tile === 4) {
+          this.map[row][column] = 0;
+          return new Pacman(
+            column * this.tileX,
+            row * this.tileY,
+            this.tileX,
+            this.tileY,
+            velocity,
+            this
+          );
+        }
+      }
+    }
   }
 
   //sets width and height of the canvas based on the map array and the tile size
