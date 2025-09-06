@@ -8,10 +8,10 @@ export default class TileMap {
     this.tileY = tileY;
 
     this.emptyCell = new Image();
-    this.emptyCell.src = "/images/emptyCell.png";
+    this.emptyCell.src = "images/emptyCell.png";
 
     this.wall = new Image();
-    this.wall.src = "/images/wall.png";
+    this.wall.src = "images/wall.png";
   }
 
   // array that represents the map
