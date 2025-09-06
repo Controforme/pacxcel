@@ -9,7 +9,7 @@ export default class Pacman {
     this.tileMap = tileMap; //map
     //image
     this.pacmanImage = new Image();
-    this.pacmanImage.src = "../images/cursor.png";
+    this.pacmanImage.src = "/images/cursor.png";
   }
 
   draw(ctx) {
