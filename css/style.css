@@ -10,6 +10,7 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -17,4 +18,10 @@ body {
 /*canvas styling*/
 #gameCanvas {
   border: 1px solid black;
+}
+
+/*mobile controls*/
+#mobileControls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }

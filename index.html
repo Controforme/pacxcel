@@ -7,9 +7,21 @@
     <title>Pacxcel</title>
   </head>
   <body>
-    <div>
-      <h1>Pacxcel</h1>
+    <h1>Pacxcel</h1>
+    <div id="excel">
       <canvas id="gameCanvas"></canvas>
+    </div>
+    <div id="instructions">
+      <h3>Escape from Copilot!</h3>
+      <p>Use W-A-S-D keys, the arrow keys, or the buttons below to move.</p>
+    </div>
+    <div id="mobileControls">
+      <div class="space"></div>
+      <button id="pressUp">↑</button>
+      <div class="space"></div>
+      <button id="pressLeft">←</button>
+      <button id="pressDown">↓</button>
+      <button id="pressRight">→</button>
     </div>
     <script src="src/Game.js" type="module"></script>
   </body>

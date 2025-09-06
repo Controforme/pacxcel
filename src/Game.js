@@ -37,3 +37,41 @@ tileMap.setCanvasSize(canvas);
 
 /*call game loop every x milliseconds set in glInterval*/
 setInterval(gameLoop, glInterval);
+
+/*on display control*/
+//up
+document.getElementById("pressUp").addEventListener("click", function () {
+  // Create a new keyboard event
+  var event = new KeyboardEvent("keydown", {
+    keyCode: 87, // Key code for 'W'
+  });
+  // Dispatch the event to the document
+  document.dispatchEvent(event);
+});
+//down
+document.getElementById("pressDown").addEventListener("click", function () {
+  // Create a new keyboard event
+  var event = new KeyboardEvent("keydown", {
+    keyCode: 83, // Key code for 'S'
+  });
+  // Dispatch the event to the document
+  document.dispatchEvent(event);
+});
+//left
+document.getElementById("pressLeft").addEventListener("click", function () {
+  // Create a new keyboard event
+  var event = new KeyboardEvent("keydown", {
+    keyCode: 65, // Key code for 'A'
+  });
+  // Dispatch the event to the document
+  document.dispatchEvent(event);
+});
+//right
+document.getElementById("pressRight").addEventListener("click", function () {
+  // Create a new keyboard event
+  var event = new KeyboardEvent("keydown", {
+    keyCode: 68, // Key code for 'D'
+  });
+  // Dispatch the event to the document
+  document.dispatchEvent(event);
+});

@@ -1,5 +1,7 @@
 import MovingDirection from "./MovingDirection.js";
 
+const buttonLeft = document.getElementById("pressLeft");
+
 /*build Pacman*/
 export default class Pacman {
   constructor(x, y, tileX, tileY, velocity, tileMap) {
