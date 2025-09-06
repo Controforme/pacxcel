@@ -24,4 +24,9 @@ body {
 #mobileControls {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+#mobileControls > * {
+  padding: 25px;
 }

@@ -12,7 +12,7 @@ const columnsNumber = 13; //number of columns set in TileMap array
 var velocity = 2; //pacman velocity
 
 /*responsive resize*/
-var maxWidth = window.innerWidth - 100;
+var maxWidth = window.innerWidth - 40;
 var referenceCanvas = tileX * columnsNumber;
 /*resize and reduce velocity on small screens*/
 if (referenceCanvas > maxWidth) {
