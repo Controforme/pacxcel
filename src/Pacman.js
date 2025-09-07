@@ -15,6 +15,9 @@ export default class Pacman {
     this.currentMovingDirection = null;
     this.requestedMovingDirection = null;
 
+    //sound when a new cell is selected
+    this.wakaSound = new Audio("sounds/mouse-click.mp3");
+
     document.addEventListener("keydown", this.#keydown);
 
     //image
@@ -25,6 +28,7 @@ export default class Pacman {
   //draw pacman
   draw(ctx) {
     this.#move();
+    this.#eatDot();
     ctx.drawImage(this.pacmanImage, this.x, this.y, this.tileX, this.tileY);
   }
 
@@ -33,33 +37,46 @@ export default class Pacman {
     //up
     if (event.keyCode == 38 || event.keyCode == 87) {
       //arrow up or W
-      if (this.currentMovingDirection == MovingDirection.down)
+      if (this.currentMovingDirection == MovingDirection.down) {
         this.currentMovingDirection = MovingDirection.up;
+        //play sound only when changing direction
+        this.wakaSound.play();
+      }
       this.requestedMovingDirection = MovingDirection.up;
     }
     //down
     if (event.keyCode == 40 || event.keyCode == 83) {
       //arrow down or S
-      if (this.currentMovingDirection == MovingDirection.up)
+      if (this.currentMovingDirection == MovingDirection.up) {
         this.currentMovingDirection = MovingDirection.down;
+        //play sound only when changing direction
+        this.wakaSound.play();
+      }
       this.requestedMovingDirection = MovingDirection.down;
     }
     //left
     if (event.keyCode == 37 || event.keyCode == 65) {
       //arrow left or A
-      if (this.currentMovingDirection == MovingDirection.right)
+      if (this.currentMovingDirection == MovingDirection.right) {
         this.currentMovingDirection = MovingDirection.left;
+        //play sound only when changing direction
+        this.wakaSound.play();
+      }
       this.requestedMovingDirection = MovingDirection.left;
     }
     //right
     if (event.keyCode == 39 || event.keyCode == 68) {
       //arrow right or D
-      if (this.currentMovingDirection == MovingDirection.left)
+      if (this.currentMovingDirection == MovingDirection.left) {
         this.currentMovingDirection = MovingDirection.right;
+        //play sound only when changing direction
+        this.wakaSound.play();
+      }
       this.requestedMovingDirection = MovingDirection.right;
     }
   };
 
+  //pacman movement
   #move() {
     //get the current direction
     if (this.currentMovingDirection !== this.requestedMovingDirection) {
@@ -74,8 +91,11 @@ export default class Pacman {
             this.y,
             this.requestedMovingDirection
           )
-        )
+        ) {
           this.currentMovingDirection = this.requestedMovingDirection;
+          //play sound only when changing direction
+          this.wakaSound.play();
+        }
       }
     }
 
@@ -103,6 +123,15 @@ export default class Pacman {
       case MovingDirection.right:
         this.x += this.velocity;
         break;
+    }
+  }
+
+  //when pacman goes over a cell without being caught
+  #eatDot() {
+    //check tilemap on pacman position
+    if (this.tileMap.eatDot(this.x, this.y)) {
+      //play sound
+      //this.wakaSound.play();
     }
   }
 }

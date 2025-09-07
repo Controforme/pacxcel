@@ -25,11 +25,14 @@ if (referenceCanvas > maxWidth) {
 const tileMap = new TileMap(tileX, tileY);
 //create pacman
 const pacman = tileMap.getPacman(velocity);
+//create enemies
+const enemies = tileMap.getEnemies(velocity);
 
 /*game loop - redraws the screen*/
 function gameLoop() {
   tileMap.draw(ctx);
   pacman.draw(ctx);
+  enemies.forEach((enemy) => enemy.draw(ctx));
 }
 
 /*set canvas size*/
