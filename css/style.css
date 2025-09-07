@@ -17,7 +17,7 @@ body {
 
 /*canvas styling*/
 #gameCanvas {
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 /*mobile controls*/

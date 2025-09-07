@@ -2,6 +2,9 @@
 import Pacman from "./Pacman.js";
 import MovingDirection from "./MovingDirection.js";
 
+/*colors*/
+var lightGrey = "rgb(220, 220, 220)";
+
 /*methods to build the tile map*/
 export default class TileMap {
   constructor(tileX, tileY) {
@@ -11,8 +14,8 @@ export default class TileMap {
     this.emptyCell = new Image();
     this.emptyCell.src = "images/emptyCell.png";
 
-    this.wall = new Image();
-    this.wall.src = "images/wall.png";
+    // this.wall = new Image();
+    // this.wall.src = "images/wall.png";
   }
 
   // array that represents the map
@@ -55,25 +58,29 @@ export default class TileMap {
   //draw the empty cells
   //methods that start with # are private, can't be called outside this file
   #drawEmpty(ctx, column, row, sizeX, sizeY) {
-    ctx.drawImage(
-      this.emptyCell,
-      column * this.tileX,
-      row * this.tileY,
-      sizeX,
-      sizeY
-    );
+    ctx.strokeStyle = lightGrey;
+    ctx.strokeRect(column * this.tileX, row * this.tileY, sizeX, sizeY);
+    // ctx.drawImage(
+    //   this.emptyCell,
+    //   column * this.tileX,
+    //   row * this.tileY,
+    //   sizeX,
+    //   sizeY
+    // );
   }
 
   //draw the walls
   //methods that start with # are private, can't be called outside this file
   #drawWall(ctx, column, row, sizeX, sizeY) {
-    ctx.drawImage(
-      this.wall,
-      column * this.tileX,
-      row * this.tileY,
-      sizeX,
-      sizeY
-    );
+    ctx.fillStyle = lightGrey;
+    ctx.fillRect(column * this.tileX, row * this.tileY, sizeX, sizeY);
+    // ctx.drawImage(
+    //   this.wall,
+    //   column * this.tileX,
+    //   row * this.tileY,
+    //   sizeX,
+    //   sizeY
+    // );
   }
 
   //pacman
