@@ -3,7 +3,9 @@ import Pacman from "./Pacman.js";
 import MovingDirection from "./MovingDirection.js";
 
 /*colors*/
-var lightGrey = "rgb(220, 220, 220)";
+var lightGrey = "rgb(210, 210, 210)";
+var grey = "rgb(175, 175, 175)";
+var green = "rgb(16, 124, 65)";
 
 /*methods to build the tile map*/
 export default class TileMap {
@@ -14,8 +16,8 @@ export default class TileMap {
     this.emptyCell = new Image();
     this.emptyCell.src = "images/emptyCell.png";
 
-    // this.wall = new Image();
-    // this.wall.src = "images/wall.png";
+    this.wall = new Image();
+    this.wall.src = "images/wall.png";
   }
 
   // array that represents the map
@@ -29,9 +31,9 @@ export default class TileMap {
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1],
     [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1],
-    [1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
     [1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1],
     [1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1],
     [1, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1],
@@ -58,7 +60,10 @@ export default class TileMap {
   //draw the empty cells
   //methods that start with # are private, can't be called outside this file
   #drawEmpty(ctx, column, row, sizeX, sizeY) {
-    ctx.strokeStyle = lightGrey;
+    ctx.fillStyle = "white";
+    ctx.fillRect(column * this.tileX, row * this.tileY, sizeX, sizeY);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = grey;
     ctx.strokeRect(column * this.tileX, row * this.tileY, sizeX, sizeY);
     // ctx.drawImage(
     //   this.emptyCell,
@@ -74,6 +79,9 @@ export default class TileMap {
   #drawWall(ctx, column, row, sizeX, sizeY) {
     ctx.fillStyle = lightGrey;
     ctx.fillRect(column * this.tileX, row * this.tileY, sizeX, sizeY);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = grey;
+    ctx.strokeRect(column * this.tileX, row * this.tileY, sizeX, sizeY);
     // ctx.drawImage(
     //   this.wall,
     //   column * this.tileX,

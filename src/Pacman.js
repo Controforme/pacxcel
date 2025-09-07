@@ -19,7 +19,7 @@ export default class Pacman {
 
     //image
     this.pacmanImage = new Image();
-    this.pacmanImage.src = "images/cursor.svg";
+    this.pacmanImage.src = "images/cursor.png";
   }
 
   //draw pacman
