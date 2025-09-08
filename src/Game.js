@@ -1,6 +1,12 @@
 /*import*/
 import TileMap from "./TileMap.js";
 
+/*colors*/
+var lightGrey = "rgb(210, 210, 210)";
+var grey = "rgb(175, 175, 175)";
+var lightGreen = "rgba(170, 224, 194, 1)";
+var green = "rgb(16, 124, 65)";
+
 /*variables*/
 const canvas = document.getElementById("gameCanvas"); //select the html canvas
 const ctx = canvas.getContext("2d"); //two dimensional rendering context
@@ -40,6 +46,18 @@ function gameLoop() {
   pacman.draw(ctx, pause());
   enemies.forEach((enemy) => enemy.draw(ctx, pause()));
   checkGameOver();
+  checkGameWin();
+  drawGameEnd();
+}
+
+/*game win*/
+function checkGameWin() {
+  if (!gameWin) {
+    gameWin = tileMap.didWin();
+    if (gameWin) {
+      gameWinSound.play();
+    }
+  }
 }
 
 /*game over*/
@@ -57,7 +75,80 @@ function isGameOver() {
 
 /*game pause*/
 function pause() {
-  return !pacman.madeFirstMove || gameOver;
+  return !pacman.madeFirstMove || gameOver || gameWin;
+}
+
+/*game end screens*/
+function drawGameEnd() {
+  if (gameOver || gameWin) {
+    let topText = "You Win!";
+    let bottomText = [
+      "We need to free up resources to scale up",
+      "computational power and pirate more training data.",
+      "You're fired!",
+      "",
+    ];
+    if (gameOver) {
+      topText = "Game Over";
+      bottomText = [
+        "You're fired!",
+        "You've been successfully replaced by generative AI.",
+        "But no worries! You can use a chatbot to help reduce",
+        "the emotional and cognitive load that comes with job loss.",
+      ];
+    }
+    //top message shadow
+    ctx.save();
+    ctx.shadowColor = "black";
+    ctx.shadowOffsetX = 4;
+    ctx.shadowOffsetY = 4;
+    //top message background
+    ctx.fillStyle = lightGreen;
+    ctx.fillRect(tileX, 5 * tileY, canvas.width - 2 * tileX, tileY);
+    ctx.restore();
+    //top text
+    ctx.font = "bold 12px Verdana";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText(topText, canvas.width / 2, 6 * tileY - 2);
+    //bottom message shadow
+    ctx.save();
+    ctx.shadowColor = "black";
+    ctx.shadowOffsetX = 4;
+    ctx.shadowOffsetY = 4;
+    //bottom message background
+    ctx.fillStyle = lightGrey;
+    ctx.fillRect(tileX, 6 * tileY, canvas.width - 2 * tileX, 4 * tileY + 10);
+    ctx.restore();
+    //bottom text
+    ctx.font = "12px Verdana";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText(
+      bottomText[0],
+      canvas.width / 2,
+      7 * tileY - 2,
+      canvas.width - 4 * tileX
+    );
+    ctx.fillText(
+      bottomText[1],
+      canvas.width / 2,
+      8 * tileY - 2,
+      canvas.width - 4 * tileX
+    );
+    ctx.fillText(
+      bottomText[2],
+      canvas.width / 2,
+      9 * tileY - 2,
+      canvas.width - 4 * tileX
+    );
+    ctx.fillText(
+      bottomText[3],
+      canvas.width / 2,
+      10 * tileY - 2,
+      canvas.width - 4 * tileX
+    );
+  }
 }
 
 /*set canvas size*/

@@ -71,13 +71,6 @@ export default class TileMap {
     ctx.lineWidth = 1;
     ctx.strokeStyle = grey;
     ctx.strokeRect(column * this.tileX, row * this.tileY, sizeX, sizeY);
-    // ctx.drawImage(
-    //   this.emptyCell,
-    //   column * this.tileX,
-    //   row * this.tileY,
-    //   sizeX,
-    //   sizeY
-    // );
   }
 
   //draw the walls
@@ -88,13 +81,6 @@ export default class TileMap {
     ctx.lineWidth = 1;
     ctx.strokeStyle = grey;
     ctx.strokeRect(column * this.tileX, row * this.tileY, sizeX, sizeY);
-    // ctx.drawImage(
-    //   this.wall,
-    //   column * this.tileX,
-    //   row * this.tileY,
-    //   sizeX,
-    //   sizeY
-    // );
   }
 
   //draw the selected cells
@@ -197,6 +183,15 @@ export default class TileMap {
       }
       return false;
     }
+  }
+
+  //check if all the cells are selected
+  didWin() {
+    return this.#dotsLeft() === 0;
+  }
+  #dotsLeft() {
+    //check how many cells are empty
+    return this.map.flat().filter((tile) => tile === 0).length;
   }
 
   //check if the tile is an empty cell
