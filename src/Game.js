@@ -1,12 +1,6 @@
 /*import*/
 import TileMap from "./TileMap.js";
 
-/*colors*/
-var lightGrey = "rgb(210, 210, 210)";
-var grey = "rgb(175, 175, 175)";
-var lightGreen = "rgba(170, 224, 194, 1)";
-var green = "rgb(16, 124, 65)";
-
 /*variables*/
 const canvas = document.getElementById("gameCanvas"); //select the html canvas
 const ctx = canvas.getContext("2d"); //two dimensional rendering context
@@ -16,6 +10,12 @@ var tileX = 48; //width of a single tile
 var tileY = 16; //height of a single tile
 const columnsNumber = 13; //number of columns set in TileMap array
 var velocity = 2; //pacman velocity
+
+/*colors*/
+var lightGrey = "rgb(210, 210, 210)";
+var grey = "rgb(175, 175, 175)";
+var lightGreen = "rgba(170, 224, 194, 1)";
+var green = "rgb(16, 124, 65)";
 
 /*responsive resize*/
 var maxWidth = window.innerWidth - 40;
@@ -121,7 +121,7 @@ function drawGameEnd() {
     ctx.fillRect(tileX, 6 * tileY, canvas.width - 2 * tileX, 4 * tileY + 10);
     ctx.restore();
     //bottom text
-    ctx.font = "12px Verdana";
+    ctx.font = "10px Verdana";
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
     ctx.fillText(

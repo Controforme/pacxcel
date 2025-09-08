@@ -37,8 +37,8 @@ export default class Enemy {
   //check collision with pacman
   collideWith(pacman) {
     //variables for collision ignoring cell margins
-    const sizeX = (this.tileX - 32) / 2;
-    const sizeY = this.tileY / 2;
+    const sizeX = this.tileX / 3.5;
+    const sizeY = this.tileY / 2.2;
     if (
       this.x < pacman.x + sizeX &&
       this.x + sizeX > pacman.x &&

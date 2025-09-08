@@ -4,33 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+    <meta
+      name="description"
+      content="A pac-man inspired game where you have to escape from genAI icons to do your freaking job in a spreadsheet editor."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:image" content="images/og-image.png" />
     <title>Pacxcel</title>
   </head>
   <body>
-    <div>
-      <div id="app">
-        <div class="row"><h1>Pacxcel</h1></div>
-        <div class="row">rows</div>
-        <div class="row">
-          <div class="column">columns</div>
-          <canvas id="gameCanvas"></canvas>
-        </div>
-      </div>
+    <div id="container">
       <div id="instructions">
-        <h3>Escape from genAI!</h3>
+        <h1>Escape from genAI!</h1>
         <p>Select all the cells without being interrupted by genAI icons!</p>
         <p>
           Use W-A-S-D keys, the arrow keys, or the buttons below to move.<br />Reload
           the page to try again.
         </p>
       </div>
-      <div id="mobileControls">
-        <div class="space"></div>
-        <button id="pressUp">↑</button>
-        <div class="space"></div>
-        <button id="pressLeft">←</button>
-        <button id="pressDown">↓</button>
-        <button id="pressRight">→</button>
+      <div id="app">
+        <div><h2>sheet1 - pacxcel</h2></div>
+        <div class="columnContainer">
+          <div class="column">
+            <span class="firstPoint">.</span><span>1</span><span>2</span
+            ><span>3</span><span>4</span><span>5</span><span>6</span
+            ><span>7</span><span>8</span><span>9</span><span>10</span
+            ><span>11</span><span>12</span><span>13</span><span>14</span
+            ><span>15</span>
+          </div>
+          <div class="column">
+            <div class="row">
+              <span>A</span><span>B</span><span>C</span><span>D</span
+              ><span>E</span><span>F</span><span>G</span><span>H</span
+              ><span>I</span><span>J</span><span>K</span><span>L</span
+              ><span>M</span>
+            </div>
+            <canvas id="gameCanvas"></canvas>
+          </div>
+        </div>
+      </div>
+      <div id="mobileControlsContainer">
+        <div id="mobileControls">
+          <div class="space"></div>
+          <button id="pressUp">↑</button>
+          <div class="space"></div>
+          <button id="pressLeft">←</button>
+          <button id="pressDown">↓</button>
+          <button id="pressRight">→</button>
+        </div>
       </div>
     </div>
     <script src="src/Game.js" type="module"></script>
