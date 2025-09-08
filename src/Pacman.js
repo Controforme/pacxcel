@@ -39,8 +39,6 @@ export default class Pacman {
       //arrow up or W
       if (this.currentMovingDirection == MovingDirection.down) {
         this.currentMovingDirection = MovingDirection.up;
-        //play sound only when changing direction
-        this.wakaSound.play();
       }
       this.requestedMovingDirection = MovingDirection.up;
     }
@@ -49,8 +47,6 @@ export default class Pacman {
       //arrow down or S
       if (this.currentMovingDirection == MovingDirection.up) {
         this.currentMovingDirection = MovingDirection.down;
-        //play sound only when changing direction
-        this.wakaSound.play();
       }
       this.requestedMovingDirection = MovingDirection.down;
     }
@@ -59,8 +55,6 @@ export default class Pacman {
       //arrow left or A
       if (this.currentMovingDirection == MovingDirection.right) {
         this.currentMovingDirection = MovingDirection.left;
-        //play sound only when changing direction
-        this.wakaSound.play();
       }
       this.requestedMovingDirection = MovingDirection.left;
     }
@@ -69,8 +63,6 @@ export default class Pacman {
       //arrow right or D
       if (this.currentMovingDirection == MovingDirection.left) {
         this.currentMovingDirection = MovingDirection.right;
-        //play sound only when changing direction
-        this.wakaSound.play();
       }
       this.requestedMovingDirection = MovingDirection.right;
     }
@@ -93,8 +85,6 @@ export default class Pacman {
           )
         ) {
           this.currentMovingDirection = this.requestedMovingDirection;
-          //play sound only when changing direction
-          this.wakaSound.play();
         }
       }
     }
@@ -129,9 +119,6 @@ export default class Pacman {
   //when pacman goes over a cell without being caught
   #eatDot() {
     //check tilemap on pacman position
-    if (this.tileMap.eatDot(this.x, this.y)) {
-      //play sound
-      //this.wakaSound.play();
-    }
+    this.tileMap.eatDot(this.x, this.y);
   }
 }
