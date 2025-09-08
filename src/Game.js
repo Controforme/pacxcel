@@ -83,17 +83,17 @@ function drawGameEnd() {
   if (gameOver || gameWin) {
     let topText = "You Win!";
     let bottomText = [
-      "We need to free up resources to scale up",
-      "computational power and pirate more training data.",
-      "You're fired!",
-      "",
+      "You have defeated our AI!",
+      "However you're still being fired,",
+      "we need to free up resources to scale up",
+      'computational power and "obtain" more training data.',
     ];
     if (gameOver) {
       topText = "Game Over";
       bottomText = [
         "You're fired!",
         "You've been successfully replaced by generative AI.",
-        "But no worries! You can use a chatbot to help reduce",
+        "But don't worry! You can use a chatbot to help reduce",
         "the emotional and cognitive load that comes with job loss.",
       ];
     }
