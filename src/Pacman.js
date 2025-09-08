@@ -15,9 +15,6 @@ export default class Pacman {
     this.currentMovingDirection = null;
     this.requestedMovingDirection = null;
 
-    //sound when a new cell is selected
-    this.wakaSound = new Audio("sounds/mouse-click.mp3");
-
     //check if pacman made first move
     this.madeFirstMove = false;
 
