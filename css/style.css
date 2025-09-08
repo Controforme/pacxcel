@@ -82,6 +82,7 @@ span {
   border: 1px solid var(--lightGrey);
   background-color: var(--lightLightGrey);
   font-size: 0.5rem;
+  min-width: 10px;
 }
 
 /*mobile controls*/
