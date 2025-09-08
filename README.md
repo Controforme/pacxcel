@@ -4,6 +4,6 @@ A pac-man inspired game where you have to escape from genAI icons to do your fre
 
 Code based on the awesome pacman tutorial by "CodingWith-Adam" -> https://github.com/CodingWith-Adam/pacman
 
-All the rants and code errors added, and game contents are mine.
+All the rants, in-game text, graphics and code errors added are mine.
 
 Check the game at: https://controforme.github.io/pacxcel/
