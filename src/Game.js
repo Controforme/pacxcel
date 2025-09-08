@@ -28,11 +28,36 @@ const pacman = tileMap.getPacman(velocity);
 //create enemies
 const enemies = tileMap.getEnemies(velocity);
 
+//game over variables
+let gameOver = false;
+let gameWin = false;
+const gameOverSound = new Audio("sounds/error.mp3");
+const gameWinSound = new Audio("sounds/ding.mp3");
+
 /*game loop - redraws the screen*/
 function gameLoop() {
   tileMap.draw(ctx);
-  pacman.draw(ctx);
-  enemies.forEach((enemy) => enemy.draw(ctx));
+  pacman.draw(ctx, pause());
+  enemies.forEach((enemy) => enemy.draw(ctx, pause()));
+  checkGameOver();
+}
+
+/*game over*/
+function checkGameOver() {
+  if (!gameOver) {
+    gameOver = isGameOver();
+    if (gameOver) {
+      gameOverSound.play();
+    }
+  }
+}
+function isGameOver() {
+  return enemies.some((enemy) => enemy.collideWith(pacman));
+}
+
+/*game pause*/
+function pause() {
+  return !pacman.madeFirstMove || gameOver;
 }
 
 /*set canvas size*/

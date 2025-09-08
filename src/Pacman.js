@@ -18,6 +18,9 @@ export default class Pacman {
     //sound when a new cell is selected
     this.wakaSound = new Audio("sounds/mouse-click.mp3");
 
+    //check if pacman made first move
+    this.madeFirstMove = false;
+
     document.addEventListener("keydown", this.#keydown);
 
     //image
@@ -26,9 +29,11 @@ export default class Pacman {
   }
 
   //draw pacman
-  draw(ctx) {
-    this.#move();
-    this.#eatDot();
+  draw(ctx, pause) {
+    if (!pause) {
+      this.#move();
+      this.#eatDot();
+    }
     ctx.drawImage(this.pacmanImage, this.x, this.y, this.tileX, this.tileY);
   }
 
@@ -41,6 +46,7 @@ export default class Pacman {
         this.currentMovingDirection = MovingDirection.up;
       }
       this.requestedMovingDirection = MovingDirection.up;
+      this.madeFirstMove = true;
     }
     //down
     if (event.keyCode == 40 || event.keyCode == 83) {
@@ -49,6 +55,7 @@ export default class Pacman {
         this.currentMovingDirection = MovingDirection.down;
       }
       this.requestedMovingDirection = MovingDirection.down;
+      this.madeFirstMove = true;
     }
     //left
     if (event.keyCode == 37 || event.keyCode == 65) {
@@ -57,6 +64,7 @@ export default class Pacman {
         this.currentMovingDirection = MovingDirection.left;
       }
       this.requestedMovingDirection = MovingDirection.left;
+      this.madeFirstMove = true;
     }
     //right
     if (event.keyCode == 39 || event.keyCode == 68) {
@@ -65,6 +73,7 @@ export default class Pacman {
         this.currentMovingDirection = MovingDirection.right;
       }
       this.requestedMovingDirection = MovingDirection.right;
+      this.madeFirstMove = true;
     }
   };
 

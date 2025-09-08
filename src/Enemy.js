@@ -26,10 +26,29 @@ export default class Enemy {
     this.directionTimer = this.directionTimerDefault;
   }
 
-  draw(ctx) {
-    this.#move();
-    this.#changeDirection();
+  draw(ctx, pause) {
+    if (!pause) {
+      this.#move();
+      this.#changeDirection();
+    }
     ctx.drawImage(this.enemyImage, this.x, this.y, this.tileX, this.tileY);
+  }
+
+  //check collision with pacman
+  collideWith(pacman) {
+    //variables for collision ignoring cell margins
+    const sizeX = (this.tileX - 32) / 2;
+    const sizeY = this.tileY / 2;
+    if (
+      this.x < pacman.x + sizeX &&
+      this.x + sizeX > pacman.x &&
+      this.y < pacman.y + sizeY &&
+      this.y + sizeY > pacman.y
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   //pick a value between min and max
