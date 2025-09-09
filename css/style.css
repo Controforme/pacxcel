@@ -25,6 +25,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 #container {
@@ -101,4 +102,10 @@ span {
 
 #mobileControls > * {
   padding: 25px;
+}
+
+.colophon {
+  text-align: center;
+  margin: 0;
+  font-size: 0.8rem;
 }
